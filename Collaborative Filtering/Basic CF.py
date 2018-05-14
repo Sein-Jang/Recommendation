@@ -90,3 +90,16 @@ for n in topn:
             rcount += 1
     print("Top ",n," precision = ",precision/len(item_prediction))
     print("Top ",n," recall = ",recall/rcount)
+
+    
+###  Model-Based Collaborative Filtering
+###  Matrix Factorization 
+###  Singular value decomposition(SVD)
+
+import scipy.sparse as sp
+from scipy.sparse.linalg import svds
+
+# get SVD components from train matrix. choose k.
+u, s, vt = svds(train_data_matrix, k = 20)
+s_diag_matrix=np.diag(s)
+X_pred = np.dot(np.dot(u, s_diag_matrix), vt)
